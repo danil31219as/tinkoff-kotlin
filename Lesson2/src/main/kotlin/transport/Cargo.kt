@@ -7,7 +7,7 @@ interface Cargo {
     fun tonnageInfo()
     fun download(ton: Int)
     fun unload(ton: Int)
-    fun String.cargoPrint(){
+    fun String.cargoPrint() {
         println("Cargo transport $name is ready to go by $typeofEnvironment with $tonnage ton on a deck!")
         println(this)
         println()

@@ -8,7 +8,7 @@ interface Passenger {
     fun refuel()
     fun run()
     fun tankInfo()
-    fun String.passengerPrint(){
+    fun String.passengerPrint() {
         println("You're welcome! Passenger transport $name: capacity - $capacity, by travel space - $typeofEnvironment")
         println(this)
         println()

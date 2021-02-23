@@ -1,3 +1,6 @@
 fun main(args: Array<String>) {
-    print("Hello, world!")
+    var a: Int = 4
+    a = 6
 }
+
+fun start(): String = "OK"

@@ -1,6 +1,6 @@
 package transport
 
-class ElectroCar(
+class ElectricCar(
     override val name: String,
     override val capacity: Int,
     override val typeofEnvironment: String = "ground",
@@ -18,6 +18,21 @@ class ElectroCar(
     override fun run() {
         "It drove 100 km".passengerPrint()
         accumulator -= 20
+    }
+
+    fun run(distance: Int){
+        "It drove $distance km".passengerPrint()
+        accumulator -= (distance.toFloat() / 100 * 20).toInt()
+    }
+    fun run(how: String){
+        var consumption: Int = 0
+        when(how){
+            "fast" -> consumption = 30
+            "slow" -> consumption = 10
+        }
+        accumulator -= consumption
+        "It drove 100 km".passengerPrint()
+
     }
 
     override fun tankInfo() {

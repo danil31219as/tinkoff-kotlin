@@ -1,11 +1,18 @@
 package transport
 
 fun main() {
-    val ford: Car = Car("Ford",5, volumeTank = 60)
-    val tesla: ElectroCar = ElectroCar("Tesla",2)
+    val ford: Car = Car("Ford", 5, volumeTank = 60)
+    val tesla: ElectricCar = ElectricCar("Tesla", 2)
+    with(tesla) {
+        run(200)
+        tankInfo()
+        run("slow")
+        tankInfo()
+        refuel()
+    }
     val passengerCar = listOf(ford, tesla)
-    passengerCar.forEach{
-        with(it){
+    passengerCar.forEach {
+        with(it) {
             start()
             run()
             tankInfo()
@@ -14,8 +21,8 @@ fun main() {
             stop()
         }
     }
-    val boing: Plane = Plane("Boing", 10)
-    with(boing){
+    val boeing: Plane = Plane("Boeing", 10)
+    with(boeing) {
         unload(2)
         download(9)
         download(3)
@@ -25,7 +32,7 @@ fun main() {
     }
 
     val sapsan: Train = Train("Sapsan", 100, 700, 1000)
-    with(sapsan){
+    with(sapsan) {
         download(70)
         run()
         download(40)

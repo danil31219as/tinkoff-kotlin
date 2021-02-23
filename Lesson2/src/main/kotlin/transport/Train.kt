@@ -8,7 +8,7 @@ class Train(
     override val typeofEnvironment: String = "ground",
     private var petrol: Int = volumeTank,
     private var currentTonnage: Int = 0
-): Passenger, Cargo {
+) : Passenger, Cargo {
     override fun tonnageInfo() {
         "Current tonnage is $currentTonnage".cargoPrint()
     }
@@ -31,17 +31,17 @@ class Train(
         }
     }
 
-    override fun refuel(){
+    override fun refuel() {
         "fulling...".passengerPrint()
         petrol = volumeTank
     }
 
-    override fun run(){
+    override fun run() {
         "It drove 100 km and spent ${currentTonnage.toFloat() / tonnage * 20} liters".passengerPrint()
         petrol -= (currentTonnage.toFloat() / tonnage * 20).toInt()
     }
 
-    override fun tankInfo(){
+    override fun tankInfo() {
         "Left $petrol liters".passengerPrint()
 
     }
