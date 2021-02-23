@@ -1,6 +1,6 @@
 /.idea/
 /Lesson1/.gradle/
-/Lesson1/gradle/
+/Lesson1/build/
 /Lesson1/build.gradle
 /Lesson1/gradlew
 /Lesson1/gradlew.bat
