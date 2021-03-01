@@ -10,6 +10,7 @@ fun main(args: Array<String>) {
     with(stack) {
         push(5)
         push(14)
+        push('c')
         push("56")
     }
     println(stack)
