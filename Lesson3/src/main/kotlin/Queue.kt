@@ -1,17 +1,28 @@
-class Queue(list: MutableList<Any>) {
-    var items: MutableList<Any> = list
+class Queue(val maxsize: Int) {
+    private val queue = Array<Int>(maxsize) { 0 }
+    private var tail = -1
+    private var head = 0
 
-    fun enqueue(element: Any) {
-        items.add(element)
-    }
 
-    fun dequeue(): Any? {
-        if (items.isEmpty()) {
-            return null
-        } else {
-            return items.removeAt(0)
+    fun enqueue(element: Int) {
+        if (tail == maxsize - 1) {
+            tail = -1
         }
+        queue[++tail] = element
     }
 
-    override fun toString() = items.toString()
+    fun dequeue(): Int {
+        val first = queue[head]
+        queue[head++] = 0
+        if (head == maxsize) {
+            head = 0
+        }
+
+        return first
+    }
+
+    override fun toString(): String {
+        return queue.joinToString(" ")
+    }
+
 }

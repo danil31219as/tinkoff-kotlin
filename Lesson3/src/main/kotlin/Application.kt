@@ -1,20 +1,18 @@
 fun main(args: Array<String>) {
     println("Queue:")
-    var queue: Queue = Queue(mutableListOf("a", "b", 'c'))
+    var queue: Queue = Queue(5)
     queue.enqueue(10)
-    println(queue)
+    queue.enqueue(5)
+    queue.enqueue(56)
     println(queue.dequeue())
+    queue.enqueue(11)
     println(queue)
     println("Stack:")
-    var stack: Stack = Stack()
-    with(stack) {
-        push(5)
-        push(14)
-        push('c')
-        push("56")
-    }
+    var stack: Stack = Stack(5)
+    stack.push(5)
+    stack.push(14)
+    stack.push(25)
     println(stack)
     println(stack.pop())
     println(stack)
-
 }

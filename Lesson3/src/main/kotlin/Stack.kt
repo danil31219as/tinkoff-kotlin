@@ -1,16 +1,20 @@
-class Stack {
-    var items: MutableList<Any> = mutableListOf()
-    fun push(element: Any) {
-        items.add(element)
-    }
-
-    fun pop(): Any? {
-        if (items.isEmpty()) {
-            return null
-        } else {
-            return items.removeAt(items.size - 1)
+class Stack(val maxsize: Int) {
+    var top: Int = -1
+    private val stack = Array<Int>(maxsize) { 0 }
+    fun push(element: Int) {
+        if (top == maxsize - 1) {
+            top = -1
         }
+        stack[++top] = element
     }
 
-    override fun toString() = items.toString()
+    fun pop(): Int {
+        val head = stack[top]
+        stack[top--] = 0
+        return head
+    }
+
+    override fun toString(): String {
+        return stack.joinToString(" ")
+    }
 }
