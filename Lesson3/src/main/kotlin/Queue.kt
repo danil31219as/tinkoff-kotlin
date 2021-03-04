@@ -1,24 +1,24 @@
-class Queue(val maxsize: Int) {
-    private val queue = Array<Int>(maxsize) { 0 }
+class Queue {
+    private val queue = mutableListOf<Any>()
     private var tail = -1
     private var head = 0
 
 
-    fun enqueue(element: Int) {
-        if (tail == maxsize - 1) {
-            tail = -1
+    fun enqueue(element: Any) {
+        if (tail == queue.size - 1) {
+            queue.add(0)
         }
         queue[++tail] = element
     }
 
-    fun dequeue(): Int {
-        val first = queue[head]
-        queue[head++] = 0
-        if (head == maxsize) {
-            head = 0
+    fun dequeue(): Any? {
+        if (head < queue.size) {
+            val first = queue[head]
+            queue[head++] = 0
+            return first
+        } else {
+            return null
         }
-
-        return first
     }
 
     override fun toString(): String {
