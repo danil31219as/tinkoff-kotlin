@@ -1,5 +1,5 @@
 data class CountryAllies(
     val countryId: Int,
     val allianceNames: List<String>,
-    val alliesIds: List<Int>
+    val alliesIds: List<Int> // id союзников этой страны
 )

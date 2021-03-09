@@ -1,3 +1,5 @@
+import java.lang.Exception
+
 fun main() {
     val countries = CountryDataBase(
         listOf(
@@ -24,11 +26,19 @@ fun main() {
         )
     )
     println(countries.getItem(id = 2))
+    try {
+        println(countries.getItem(id = 5))
+    } catch (e: Exception) {
+        println(e)
+    }
     println(countries.getItem(continent = "Eurasia"))
-
+    println()
     println(countryAllies.getItem("North American Union"))
-
+    println()
     val countryWithAllies = CountryService(countries, countryAllies)
     println(countryWithAllies.getCountryWithAllies())
-    println(countryWithAllies.sizeFilter({ it.population >= 70_000_000 }))
+    println(countryWithAllies.sortedByName())
+    println(countryWithAllies.sortedByContinent())
+    println(countryWithAllies.groupByContinent())
+    println(countryWithAllies.sizeFilter { it.population >= 70_000_000 })
 }

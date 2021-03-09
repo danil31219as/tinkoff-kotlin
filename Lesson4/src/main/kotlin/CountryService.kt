@@ -8,8 +8,8 @@ class CountryService(
             it.name,
             it.population,
             it.continent,
-            countryAllies.getItem(id = it.id).alliesIds,
-            countryAllies.getItem(id = it.id).allianceNames
+            countryAllies.getItem(id = it.id)[0].alliesIds,
+            countryAllies.getItem(id = it.id)[0].allianceNames
         )
     }
 
