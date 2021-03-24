@@ -1,0 +1,1 @@
+data class BookLibrary(val bookId: Int, val libraryId: Int)
