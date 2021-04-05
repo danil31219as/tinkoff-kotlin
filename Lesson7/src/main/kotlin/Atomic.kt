@@ -13,8 +13,7 @@ fun main() {
     executor10.submit(Callable {
         val start = System.nanoTime()
         val i = AtomicInteger()
-        val t = thread { repeat(1_000_000) { i.incrementAndGet() } }
-        t.join()
+        repeat(1_000_000) { i.incrementAndGet()}
         System.nanoTime() - start
     }).also { features_time.add(it) }
     rating.set("10 pool", features_time.sumOf { it.get() })
@@ -24,8 +23,7 @@ fun main() {
     executor20.submit(Callable {
         val start = System.nanoTime()
         val i = AtomicInteger()
-        val t = thread { repeat(1_000_000) { i.incrementAndGet() } }
-        t.join()
+        repeat(1_000_000) { i.incrementAndGet() }
         System.nanoTime() - start
     }).also { features_time.add(it) }
     rating.set("20 pool", features_time.sumOf { it.get() })
@@ -35,8 +33,7 @@ fun main() {
     executor30.submit(Callable {
         val start = System.nanoTime()
         val i = AtomicInteger()
-        val t = thread { repeat(1_000_000) { i.incrementAndGet() } }
-        t.join()
+        repeat(1_000_000) { i.incrementAndGet() }
         System.nanoTime() - start
     }).also { features_time.add(it) }
     rating.set("30 pool", features_time.sumOf { it.get() })
