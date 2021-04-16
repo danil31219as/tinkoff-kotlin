@@ -1,0 +1,1 @@
+data class CarData(val id: Int, val company: String)
