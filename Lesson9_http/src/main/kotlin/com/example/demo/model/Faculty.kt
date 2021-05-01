@@ -1,4 +1,12 @@
 package com.example.demo.model
 
+import io.swagger.annotations.ApiModel
+import io.swagger.annotations.ApiModelProperty
 
-data class Faculty(val id: Int, val title: String)
+@ApiModel("Факультет")
+data class Faculty(
+    @ApiModelProperty("идентификатор")
+    val id: Int,
+    @ApiModelProperty("название")
+    val title: String,
+)

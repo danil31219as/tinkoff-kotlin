@@ -13,12 +13,15 @@ import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 import com.google.gson.*
 import io.swagger.annotations.ApiOperation
+import io.swagger.annotations.ApiResponse
+import io.swagger.annotations.ApiResponses
 
 @RestController
 @RequestMapping("/student")
 class StudentController(private val studentDao: StudentComponent) {
     @ApiOperation(value = "Получение студента по его id",
         notes = "Позволяет получить сущность студента с именнованным факультетом по его id")
+    @ApiResponses(value= [ApiResponse(code=200, message = "Ok. Student object")])
     @GetMapping("/{id}")
     fun getStudent(@PathVariable id: Int): StudentWithFaculty {
 
@@ -47,30 +50,35 @@ class StudentController(private val studentDao: StudentComponent) {
     @ApiOperation("Получение списка всех студентов",
         notes = "Возвращает все существующие сущности студентов")
     @GetMapping()
+    @ApiResponses(value= [ApiResponse(code=200, message = "Ok. Student objects")])
     fun getStudent() = studentDao.getExampleStudent()
 
     @ApiOperation("Добавление студента",
         notes = "Добавляет студента по его сущности")
+    @ApiResponses(value= [ApiResponse(code=200, message = "Ok. Student added")])
     @PostMapping
-    fun addStudent(@RequestBody student: Student): String {
+    fun addStudent(@RequestBody student: Student): Int {
         studentDao.addExampleStudent(student)
-        return "Student ${student.name} was added"
+        println("Student ${student.name} was added")
+        return student.id
     }
 
     @ApiOperation("Изменение студента",
         notes = "Изменение параметров сущности студента с некоторым id на полученные в новой сущности параметры")
     @PutMapping("/{id}")
+    @ApiResponses(value= [ApiResponse(code=200, message = "Ok. Student changed")])
     fun updateStudent(
         @PathVariable id: Int,
         @RequestBody student: Student,
-    ): String? {
+    ): Int? {
         val response = studentDao.getExampleStudent(id)
 
         if (response.isNotEmpty()) {
-            return "Update student ${
+            println("Update student ${
                 studentDao.updateExampleStudent(id,
                     student)
-            }"
+            }")
+            return id
         } else {
             throw NotFoundException()
         }
@@ -79,12 +87,14 @@ class StudentController(private val studentDao: StudentComponent) {
     @ApiOperation("Удаление студента",
         notes = "Удаляет сущность студента с некоторым id")
     @DeleteMapping("/{id}")
-    fun deleteStudent(@PathVariable id: Int): String? {
+    @ApiResponses(value= [ApiResponse(code=200, message = "Ok. Student removed")])
+    fun deleteStudent(@PathVariable id: Int): Int? {
         val response = studentDao.getExampleStudent(id)
 
         if (response.isNotEmpty()) {
             studentDao.deleteExampleStudent(id)
-            return "Delete student ${response[0]}"
+            println("Delete student ${response[0]}")
+            return id
         } else {
             throw NotFoundException()
         }

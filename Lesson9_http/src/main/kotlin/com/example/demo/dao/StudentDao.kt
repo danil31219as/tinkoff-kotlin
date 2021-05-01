@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 class StudentDao : AbstractStudentDao {
-    val data = mutableListOf(
+    var data = mutableListOf(
         Student(1, 2, "Peter Ivanov", 3),
         Student(2, 1, "Ivan Petrov", 1),
         Student(3, 1, "Vasiliy Smirnov", 4),
@@ -25,15 +25,19 @@ class StudentDao : AbstractStudentDao {
     }
 
     override fun updateStudent(id: Int, student: Student): Student {
-        data[id - 1] = Student(id = student.id,
-            facultyId = student.facultyId ?: data[id].facultyId,
-            name = student.name,
-            courseNumber = student.courseNumber ?: data[id].courseNumber)
-        return data[id - 1]
+//        data[id - 1] = Student(id = student.id,
+//            facultyId = student.facultyId ?: data[id].facultyId,
+//            name = student.name,
+//            courseNumber = student.courseNumber ?: data[id].courseNumber)
+//        return data[id - 1]
+        this.deleteStudent(id)
+        this.addStudent(student)
+        return student
     }
 
     override fun deleteStudent(id: Int) {
-        data[id - 1] = Student(0, name = "", facultyId = null, courseNumber = null)
+        //data[id - 1] = Student(0, name = "", facultyId = null, courseNumber = null)
+        var data = data.filter{it.id != id}
     }
 
 }
