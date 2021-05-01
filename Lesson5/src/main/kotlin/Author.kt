@@ -1,0 +1,1 @@
+data class Author(var id: Int, val name: String, val bookIds: List<Int>)
