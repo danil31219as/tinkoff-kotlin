@@ -1,0 +1,1 @@
+data class Library(val id: Int, val city: String, val bookIds: List<Int>)
